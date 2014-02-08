@@ -80,7 +80,7 @@ describe('lazypipe', function() {
 			stream3.data.should.eql([23]);
 		});
 
-		it('should be re-pipeable', function() {
+		it('should be re-pipeable', function(done) {
 			var pl1 = lazypipe().pipe(stream1).pipe(stream2),
 				pl2 = lazypipe().pipe(stream3).pipe(pl1).pipe(stream4),
 				pl3 = pl1.pipe(stream5);
@@ -89,11 +89,14 @@ describe('lazypipe', function() {
 			pl2().write(21); // s3 -> s1 -> s2 -> s4
 			pl3().write(31); // s1 -> s2 -> s5
 
-			stream1.data.should.eql([11, 22, 31]);
-			stream2.data.should.eql([12, 23, 32]);
-			stream3.data.should.eql([21]);
-			stream4.data.should.eql([24]);
-			stream5.data.should.eql([33]);
+			process.nextTick(function() {
+				stream1.data.should.eql([11, 22, 31]);
+				stream2.data.should.eql([12, 23, 32]);
+				stream3.data.should.eql([21]);
+				stream4.data.should.eql([24]);
+				stream5.data.should.eql([33]);
+				done();
+			});
 		});
 		
 	});

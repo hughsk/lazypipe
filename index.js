@@ -2,7 +2,7 @@
 
 "use strict";
 
-var combine = require('stream-combiner');
+var combine = require('multipipe');
 
 function lazypipe() {
 	var createPipeline = function(tasks) {

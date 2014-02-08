@@ -91,7 +91,7 @@ Creates a new lazy pipeline with all the previous steps, and the new step added 
 
 Calling the result of `pipe()` as a function creates a pipeline at that time.  This can be used multiple times, and can even be called if the lazypipe was added to for other purposes.
 
-It returns a stream created using `stream-combiner`, where all the internal steps are processed sequentially, and the final result is passed on.
+It returns a stream created using [`multipipe`](http://github.com/segmentio/multipipe), where all the internal steps are processed sequentially, and the final result is passed on.
 
 
 LICENSE

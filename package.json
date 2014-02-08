@@ -25,7 +25,7 @@
     "gulp"
   ],
   "dependencies": {
-    "stream-combiner": "*"
+    "multipipe": "^0.0.1"
   },
   "devDependencies": {
     "mocha": "*",
